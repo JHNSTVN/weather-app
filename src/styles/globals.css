@@ -1,0 +1,214 @@
+/* Tailwind CSS imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --primary-color: #1E3A8A; /* Dark Blue */
+  --secondary-color: #3B82F6; /* Blue */
+  --accent-color: #60A5FA; /* Light Blue */
+  --bg-gradient: linear-gradient(180deg, #60A5FA, #3B82F6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  @apply min-h-screen flex flex-col items-center justify-center p-4;
+  font-family: 'Inter', sans-serif;
+}
+
+h1 {
+  @apply text-4xl font-bold mb-8;
+}
+
+input, button {
+  @apply w-full max-w-lg; /* Ensure full width and alignment */
+}
+
+@media (max-width: 640px) {
+  h1 {
+    @apply text-3xl;
+  }
+
+  .weather-wizard {
+    @apply p-4;
+  }
+
+  .weather-scroll {
+    @apply text-center;
+  }
+}
+
+@media (min-width: 641px) {
+  .weather-wizard {
+    @apply max-w-lg p-6;
+  }
+
+  .weather-scroll {
+    @apply text-left;
+  }
+}
+
+.weather-wizard {
+  @apply bg-white bg-opacity-20 backdrop-blur-md rounded-xl shadow-lg;
+}
+
+.input-spell {
+  @apply w-full max-w-lg p-3 mb-4 text-white bg-black bg-opacity-50 backdrop-blur-md rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 text-center;
+}
+
+.search-spell {
+  @apply w-full max-w-lg py-3 px-6 bg-blue-500 rounded-lg text-white font-semibold hover:bg-blue-700 transition duration-300 ease-in-out text-center;
+  margin-bottom: 1rem; /* Adjust spacing below the button */
+}
+
+.error-curse {
+  @apply text-red-500 mt-4;
+}
+
+.weather-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-6 lg:grid-cols-3 lg:gap-4;
+}
+
+.weather-tile {
+  @apply bg-black bg-opacity-50 backdrop-blur-md rounded-lg shadow-md p-4 text-white transition transform hover:scale-105 text-center;
+}
+
+.weather-summary {
+  @apply w-full max-w-lg bg-black bg-opacity-50 backdrop-blur-md rounded-lg shadow-md text-white text-center;
+}
+
+/* Search dropdown list styling */
+.dropdown-list {
+  @apply w-full max-w-lg bg-black bg-opacity-50 backdrop-blur-md rounded-lg shadow-md text-center;
+}
+
+.dropdown-list li {
+  @apply text-center; /* Ensure individual items are centered */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Dynamic Weather Backgrounds */
+.weather-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
+}
+
+.sunny-bg {
+  background-image: url('/images/sunny.png');
+}
+
+.rainy-bg {
+  background-image: url('/images/rainy.png');
+}
+
+.cloudy-bg {
+  background-image: url('/images/cloudy.png');
+}
+
+.snowy-bg {
+  background-image: url('/images/snowy.png');
+}
+
+.thunderstorm-bg {
+  background-image: url('/images/thunderstorm.png');
+}
+
+.mist-bg {
+  background-image: url('/images/mist.png');
+}
+
+.windy-bg {
+  background-image: url('/images/windy.png');
+}
+
+.partly-cloudy-bg {
+  background-image: url('/images/partly-cloudy.png');
+}
+
+.overcast-bg {
+  background-image: url('/images/overcast.png');
+}
+
+.default-bg {
+  background-image: url('/images/default.png');
+}
+
+/* Global Styles and Animations */
+
+/* General Animation for Buttons */
+.search-spell {
+  transition: transform 0.3s ease-in-out;
+}
+
+.search-spell:hover {
+  transform: scale(1.05);
+}
+
+.search-spell:active {
+  transform: scale(0.95);
+}
+
+/* Icon Animations */
+.icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+  transform: rotate(10deg);
+}
+
+.icon {
+  animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.weather-wizard {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
